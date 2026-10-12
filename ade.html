@@ -83,10 +83,18 @@
     /* Top Controls Bar */
     .top-toolbar {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
+    }
+
+    .brand-signature {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     .theme-toggle-btn {
@@ -587,6 +595,7 @@
   <div class="wrapper">
     <!-- Top Utility Bar -->
     <div class="top-toolbar">
+      <span class="brand-signature">OM INGOLE</span>
       <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">
         <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
       </button>
