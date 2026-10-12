@@ -90,11 +90,32 @@
     }
 
     .brand-signature {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-badge {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-accent);
+      background: var(--card-bg);
+      border: 1.5px solid var(--primary-accent);
+      padding: 5px 12px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
+      display: inline-block;
+    }
+
+    .footer-credit-bar {
+      margin-top: 14px;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
       color: var(--text-muted);
+      text-align: left;
+      padding-left: 2px;
+      letter-spacing: 0.03em;
     }
 
     .theme-toggle-btn {
@@ -595,7 +616,9 @@
   <div class="wrapper">
     <!-- Top Utility Bar -->
     <div class="top-toolbar">
-      <span class="brand-signature">OM INGOLE</span>
+      <div class="brand-signature">
+        <span class="brand-badge">OM INGOLE</span>
+      </div>
       <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">
         <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
       </button>
@@ -864,17 +887,22 @@
     <footer class="faculty-footer">
       <div class="faculty-box">
         <p>Prepared By</p>
-        <h4>Mrs. A. R. Kankale</h4>
+        <h4>Pranav Lod</h4>
       </div>
       <div class="faculty-box">
         <p>Faculty</p>
-        <h4>Pranav Lod</h4>
+        <h4>Prof. Aditi Ghive</h4>
       </div>
       <div class="faculty-box">
         <p>Approved By (H.O.D.)</p>
         <h4>Dr. S. D. Padiya</h4>
       </div>
     </footer>
+
+    <!-- Bottom Left Signature -->
+    <div class="footer-credit-bar">
+      <span>Portal designed &amp; developed by <strong>OM INGOLE</strong></span>
+    </div>
   </div>
 
   <script>
