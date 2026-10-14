@@ -30,6 +30,11 @@
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
       --completed-border: #86efac;
       --completed-bg: #f0fdf4;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #f5f3ff;
+      --accent-amber: #d97706;
+      --drawer-bg: #f8fafc;
+      --drawer-border: #e2e8f0;
     }
 
     [data-theme="dark"] {
@@ -57,6 +62,11 @@
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
       --completed-border: #166534;
       --completed-bg: rgba(22, 101, 52, 0.15);
+      --accent-purple: #a78bfa;
+      --accent-purple-light: rgba(167, 139, 250, 0.12);
+      --accent-amber: #fbbf24;
+      --drawer-bg: #141e33;
+      --drawer-border: #293548;
     }
 
     * {
@@ -76,7 +86,7 @@
     }
 
     .wrapper {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -86,17 +96,58 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .top-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .subtle-initials {
-      font-size: 0.78rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       color: var(--text-muted);
-      opacity: 0.75;
+      opacity: 0.8;
       user-select: none;
-      padding-left: 2px;
+      padding-right: 4px;
+    }
+
+    .tool-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tool-btn:hover {
+      border-color: var(--primary-accent);
+      color: var(--primary-accent);
+      transform: translateY(-1px);
+    }
+
+    .tool-btn-highlight {
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+      background: var(--accent-purple-light);
+    }
+
+    .tool-btn-highlight:hover {
+      border-color: var(--accent-purple);
+      background: var(--accent-purple);
+      color: #ffffff;
     }
 
     .theme-toggle-btn {
@@ -218,13 +269,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
 
     .tracker-title {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--text-main);
       display: flex;
@@ -232,10 +283,42 @@
       gap: 8px;
     }
 
+    .tracker-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .tracker-stats {
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .tracker-btn {
+      background: var(--tag-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tracker-btn:hover {
+      color: var(--text-main);
+      border-color: var(--primary-accent);
+    }
+
+    .tracker-btn-danger:hover {
+      border-color: #ef4444;
+      color: #ef4444;
     }
 
     .progress-bar-bg {
@@ -252,6 +335,22 @@
       width: 0%;
       border-radius: 6px;
       transition: width 0.3s ease;
+    }
+
+    /* Print Student Sheet (visible in print only) */
+    .print-meta-sheet {
+      display: none;
+      padding: 14px 18px;
+      border: 1px dashed #64748b;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .print-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
     }
 
     /* Search & Filter Toolbar */
@@ -350,9 +449,8 @@
       border-radius: 12px;
       padding: 18px 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
+      flex-direction: column;
+      gap: 12px;
       box-shadow: var(--shadow-sm);
       position: relative;
     }
@@ -360,12 +458,19 @@
     .practical-item:hover {
       box-shadow: var(--shadow-md);
       border-color: var(--border-color);
-      transform: translateY(-1px);
     }
 
     .practical-item.is-completed {
       border-color: var(--completed-border);
       background-color: var(--completed-bg);
+    }
+
+    .practical-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
     }
 
     .practical-left {
@@ -466,11 +571,47 @@
       color: var(--text-muted);
     }
 
+    /* Actions Column */
+    .practical-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-viva-toggle {
+      background: var(--tag-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-viva-toggle:hover {
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+      background: var(--accent-purple-light);
+    }
+
+    .btn-viva-toggle.active {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      color: #ffffff;
+    }
+
     /* Launch Buttons */
     .btn-launch {
       color: #ffffff;
       text-decoration: none;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -479,6 +620,7 @@
       align-items: center;
       gap: 6px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
     }
 
     .btn-falstad {
@@ -499,6 +641,112 @@
       transform: translateY(-1px);
     }
 
+    /* Expandable Viva Drawer */
+    .viva-drawer {
+      display: none;
+      border-top: 1px solid var(--drawer-border);
+      padding-top: 14px;
+      margin-top: 4px;
+      background: var(--drawer-bg);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .viva-drawer.open {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .viva-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-purple);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .viva-theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .viva-theory-formula {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: var(--tag-bg);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--primary-accent);
+      font-weight: 600;
+    }
+
+    .viva-qa-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .viva-qa-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.86rem;
+    }
+
+    .viva-q {
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .viva-q-badge {
+      color: var(--accent-purple);
+      font-weight: 800;
+    }
+
+    .viva-a {
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-left: 24px;
+    }
+
+    .viva-tip-card {
+      background: rgba(217, 119, 6, 0.08);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .viva-tip-card strong {
+      color: var(--accent-amber);
+    }
+
     /* Empty state */
     .no-results {
       display: none;
@@ -509,6 +757,168 @@
       border-radius: 12px;
       color: var(--text-muted);
       font-size: 0.95rem;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-main);
+      background: var(--tag-bg);
+    }
+
+    .modal-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--tag-bg);
+      overflow-x: auto;
+      padding: 0 16px;
+    }
+
+    .modal-tab-btn {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .modal-tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .modal-tab-btn.active {
+      color: var(--primary-accent);
+      border-bottom-color: var(--primary-accent);
+      background: var(--card-bg);
+    }
+
+    .modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .pinout-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.85rem;
+    }
+
+    .pinout-table th, .pinout-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .pinout-table th {
+      background: var(--tag-bg);
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .pin-number-badge {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      text-align: center;
+      line-height: 22px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-accent);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
     }
 
     /* Faculty Footer */
@@ -540,7 +950,7 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 680px) {
+    @media (max-width: 768px) {
       .header-card {
         flex-direction: column;
         text-align: center;
@@ -550,12 +960,17 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .practical-item {
+      .practical-main-row {
         flex-direction: column;
         align-items: stretch;
       }
-      .btn-launch {
+      .practical-actions {
         width: 100%;
+        justify-content: stretch;
+      }
+      .practical-actions .btn-viva-toggle,
+      .practical-actions .btn-launch {
+        flex: 1;
         justify-content: center;
       }
       .faculty-footer {
@@ -571,8 +986,11 @@
         color: #000000 !important;
         padding: 0;
       }
-      .top-toolbar, .tracker-card, .filter-toolbar, .btn-launch, .exp-checkbox {
+      .top-toolbar, .tracker-card, .filter-toolbar, .practical-actions, .exp-checkbox, .modal-overlay, .toast {
         display: none !important;
+      }
+      .print-meta-sheet {
+        display: block !important;
       }
       .header-card, .lab-card, .practical-item, .faculty-footer {
         border: 1px solid #ccc !important;
@@ -587,8 +1005,14 @@
       .lab-card h1, .college-details h2 {
         color: #000000 !important;
       }
+      .viva-drawer {
+        display: block !important;
+        border-color: #ddd !important;
+        background: #fafafa !important;
+      }
       .practical-item {
         break-inside: avoid;
+        margin-bottom: 12px;
       }
     }
   </style>
@@ -597,10 +1021,32 @@
   <div class="wrapper">
     <!-- Top Utility Bar -->
     <div class="top-toolbar">
-      <span class="subtle-initials">OI</span>
+      <div class="top-toolbar-left">
+        <span class="subtle-initials">OI</span>
+        <button class="tool-btn tool-btn-highlight" id="openPinoutsBtn" title="View IC Pinouts and Quick Reference">
+          ⚡ <span>IC Pinouts &amp; Cheat Sheet</span>
+        </button>
+        <button class="tool-btn" id="printSheetBtn" title="Print Practical Index Sheet">
+          🖨️ <span>Print Index</span>
+        </button>
+      </div>
       <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">
         <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
       </button>
+    </div>
+
+    <!-- Printable Student Meta Sheet (Only visible on Print) -->
+    <div class="print-meta-sheet">
+      <div class="print-row">
+        <div><strong>Student Name:</strong> __________________________________________</div>
+        <div><strong>Roll No:</strong> __________________</div>
+        <div><strong>Batch:</strong> ________</div>
+      </div>
+      <div class="print-row" style="margin-top: 10px;">
+        <div><strong>Subject:</strong> Analog &amp; Digital Electronics Lab (31T204PC)</div>
+        <div><strong>Semester:</strong> III (IT)</div>
+        <div><strong>Faculty Sign:</strong> __________________</div>
+      </div>
     </div>
 
     <!-- Header Card -->
@@ -617,7 +1063,7 @@
     <div class="lab-card">
       <div>
         <h1>Analog &amp; Digital Electronics Lab</h1>
-        <p>Direct Launch Interactive Practical Master List</p>
+        <p>Direct Launch Interactive Practical Master List &bull; Simulation &amp; Viva Voce Portal</p>
       </div>
       <div class="header-stats">
         <span class="badge-count" id="totalCountBadge">10 Experiments</span>
@@ -630,7 +1076,15 @@
         <div class="tracker-title">
           <span>📋 Lab Progress Tracker</span>
         </div>
-        <div class="tracker-stats" id="trackerStatsText">0 of 10 Completed (0%)</div>
+        <div class="tracker-actions">
+          <div class="tracker-stats" id="trackerStatsText">0 of 10 Completed (0%)</div>
+          <button class="tracker-btn" id="exportProgressBtn" title="Backup completed practicals to JSON">⬇️ Export</button>
+          <label class="tracker-btn" title="Import practicals progress from JSON" style="cursor:pointer;">
+            ⬆️ Import
+            <input type="file" id="importProgressInput" accept=".json" style="display:none;" />
+          </label>
+          <button class="tracker-btn tracker-btn-danger" id="resetProgressBtn" title="Reset all checkboxes">🔄 Reset</button>
+        </div>
       </div>
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -645,7 +1099,7 @@
           type="text" 
           id="searchInput" 
           class="search-input" 
-          placeholder="Search experiments by title, topic, IC number (e.g. op-amp, 741, multiplexer, JFET)..." 
+          placeholder="Search experiments by title, topic, IC number (e.g. op-amp, 741, multiplexer, JFET, half adder)..." 
           aria-label="Search experiments"
         />
       </div>
@@ -669,192 +1123,532 @@
     <main class="practical-list" id="practicalList">
       <!-- Exp 1 -->
       <article class="practical-item" data-id="exp-1" data-co="CO1" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">01</div>
-          <div class="exp-info">
-            <div class="exp-title">To study CE amplifier with variation of load resistance.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO1</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Potentiometer slider + AC input generator</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">01</div>
+            <div class="exp-info">
+              <div class="exp-title">To study CE amplifier with variation of load resistance.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO1</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Potentiometer slider + AC input generator</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-1" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=ceamp.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=ceamp.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-1">
+          <div class="viva-section-title">💡 Core Theory &amp; Governing Equations</div>
+          <div class="viva-theory-card">
+            The Common Emitter (CE) configuration provides both current and voltage amplification with a 180° phase inversion between the base input and collector output. The voltage gain is determined by the effective AC collector load:
+            <div class="viva-theory-formula">A_v = - (R_C || R_L) / r'_e &nbsp;|&nbsp; r'_e ≈ 26 mV / I_E</div>
+            Decreasing the load resistance R_L reduces the parallel combination (R_C || R_L), resulting in reduced AC voltage gain but wider bandwidth.
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> Why is there a 180° phase difference between input and output in a CE amplifier?</div>
+              <div class="viva-a">As the input base voltage rises, base current increases, driving a higher collector current I_C. The higher voltage drop across R_C causes the collector output voltage V_C = V_CC - I_C*R_C to drop, creating a 180° phase inversion.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> What is the role of the emitter bypass capacitor C_E?</div>
+              <div class="viva-a">It provides a low-impedance bypass path to ground for AC signals, preventing AC negative feedback across R_E and maximizing the AC voltage gain while preserving DC bias stability.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> Why is the CE configuration most widely used in multi-stage audio amplifiers?</div>
+              <div class="viva-a">Because it is the only BJT configuration that delivers both high voltage gain (A_v) and high current gain (A_i), producing the highest overall power gain (A_p = A_v × A_i).</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Keep the AC generator input voltage below 20 mV_p-p to prevent non-linear clipping distortion at the collector output.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 2 -->
       <article class="practical-item" data-id="exp-2" data-co="CO1" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">02</div>
-          <div class="exp-info">
-            <div class="exp-title">To study and verify the operation of inverting mode of op-amp using IC 741.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO1</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Interactive AC source + Feedback resistor</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">02</div>
+            <div class="exp-info">
+              <div class="exp-title">To study and verify the operation of inverting mode of op-amp using IC 741.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO1</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Interactive AC source + Feedback resistor</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-2" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=amp-invert.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=amp-invert.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-2">
+          <div class="viva-section-title">💡 Core Theory &amp; Governing Equations</div>
+          <div class="viva-theory-card">
+            The input signal is applied to the inverting terminal (Pin 2) via R1, while the non-inverting terminal (Pin 3) is grounded. Negative feedback is applied through Rf:
+            <div class="viva-theory-formula">V_out = - (R_f / R_1) × V_in &nbsp;|&nbsp; Closed-Loop Gain A_CL = - R_f / R_1</div>
+            Because the non-inverting input is grounded and open-loop gain A_OL → ∞, the inverting terminal is maintained at a "Virtual Ground" (0 V).
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> What is the virtual ground concept and why does it occur?</div>
+              <div class="viva-a">Since open-loop gain A_OL is extremely large (~200,000) and output voltage is finite (clamped by ±V_CC), the differential input voltage V_d = V(+) - V(-) = V_out / A_OL ≈ 0. Since Pin 3 is tied to physical ground (0 V), Pin 2 is held at 0 V (virtual ground) without direct ground connection.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> What is Slew Rate in an operational amplifier?</div>
+              <div class="viva-a">Slew Rate is the maximum rate of change of output voltage per unit time, specified in V/µs. For IC 741, typical slew rate is 0.5 V/µs, primarily limited by the internal 30 pF compensation capacitor.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> What are the pin connections for power supply and offset null in IC 741?</div>
+              <div class="viva-a">Pin 7 is +V_CC (+12V to +15V), Pin 4 is -V_EE (-12V to -15V), Pin 2 is inverting input, Pin 3 is non-inverting input, Pin 6 is output, and Pins 1 & 5 are for offset null potentiometer trimming.</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Always connect both positive (+V_CC) and negative (-V_EE) DC power supplies with common reference to ground before connecting the signal generator.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 3 -->
       <article class="practical-item" data-id="exp-3" data-co="CO1" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">03</div>
-          <div class="exp-info">
-            <div class="exp-title">To study and verify the operation of non-inverting mode of op-amp using IC 741.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO1</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Interactive AC source + Resistor network</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">03</div>
+            <div class="exp-info">
+              <div class="exp-title">To study and verify the operation of non-inverting mode of op-amp using IC 741.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO1</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Interactive AC source + Resistor network</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-3" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=amp-noninvert.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=amp-noninvert.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-3">
+          <div class="viva-section-title">💡 Core Theory &amp; Governing Equations</div>
+          <div class="viva-theory-card">
+            The input signal is applied directly to the non-inverting terminal (Pin 3). A fraction of the output is fed back to the inverting input (Pin 2) via the voltage divider R_f and R_1:
+            <div class="viva-theory-formula">V_out = (1 + R_f / R_1) × V_in &nbsp;|&nbsp; Closed-Loop Gain A_CL = 1 + R_f / R_1 ≥ 1</div>
+            The output voltage is in-phase with the input (0° phase shift) and features extremely high input impedance (hundreds of MΩ).
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> What is a Voltage Follower (Unity Gain Buffer)?</div>
+              <div class="viva-a">When R_f = 0 Ω (direct short) and R_1 = ∞ (open), gain becomes A_v = 1. It acts as a voltage buffer that isolates stages: it has very high input impedance (does not load prior stage) and near-zero output impedance.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> Can the gain of a non-inverting op-amp be less than 1?</div>
+              <div class="viva-a">No. Since A_CL = 1 + (R_f / R_1) and physical resistors have positive resistance values, the minimum theoretical gain is exactly 1 (unity).</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> Why is the input impedance of non-inverting mode much higher than inverting mode?</div>
+              <div class="viva-a">In non-inverting mode, input enters directly into the gate/base of the op-amp input differential pair, where negative feedback boosts input resistance by (1 + A_OL*β). In inverting mode, input sees resistor R1 directly to virtual ground.</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Remember the Gain-Bandwidth Product (GBW = 1 MHz for 741). If you design for a gain of 100, the maximum usable bandwidth drops to 10 kHz.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 4 -->
       <article class="practical-item" data-id="exp-4" data-co="CO2" data-platform="circuitverse">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">04</div>
-          <div class="exp-info">
-            <div class="exp-title">To study and verify the operation of logic gates.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO2</span>
-              <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
-              <span class="input-hint">CircuitVerse: Basic Logic Gates Circuit</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">04</div>
+            <div class="exp-info">
+              <div class="exp-title">To study and verify the operation of logic gates.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO2</span>
+                <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
+                <span class="input-hint">CircuitVerse: Basic Logic Gates Circuit</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-4" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-cv" href="https://circuitverse.org/users/204555/projects/basic-logic-gates-38e9c65b-edd2-4827-9953-48639399d66a" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-cv" href="https://circuitverse.org/users/204555/projects/basic-logic-gates-38e9c65b-edd2-4827-9953-48639399d66a" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+        <div class="viva-drawer" id="viva-4">
+          <div class="viva-section-title">💡 Core Theory &amp; Truth Tables</div>
+          <div class="viva-theory-card">
+            Logic gates form the bedrock of digital computing. TTL 74xx IC numbers:
+            <div class="viva-theory-formula">7408 (AND) | 7432 (OR) | 7404 (NOT) | 7400 (NAND) | 7402 (NOR) | 7486 (XOR)</div>
+            Standard TTL operates at V_CC = +5.0V ± 5%, where HIGH is 2.0V–5.0V and LOW is 0.0V–0.8V.
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> Why are NAND and NOR known as universal gates?</div>
+              <div class="viva-a">Because any basic gate (AND, OR, NOT) and any combinational logic expression can be synthesized exclusively using only NAND gates or only NOR gates.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> What is Fan-Out and Propagation Delay in digital logic?</div>
+              <div class="viva-a">Fan-Out is the maximum number of standard logic inputs a gate output can reliably drive without voltage degradation (typical TTL Fan-Out is 10). Propagation Delay is the time elapsed between input transition and output response (~10 ns in standard TTL).</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> What is the Boolean expression for a 2-input XOR gate?</div>
+              <div class="viva-a">Y = A ⊕ B = A'·B + A·B'. The output is HIGH (1) if and only if the inputs are different (odd parity detector).</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> In physical TTL circuits, never leave unused inputs floating—connect them to V_CC via a 1 kΩ pull-up resistor to prevent noise triggering.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 5 -->
       <article class="practical-item" data-id="exp-5" data-co="CO2" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">05</div>
-          <div class="exp-info">
-            <div class="exp-title">To realize Half Adder and Half Subtractor using logic gates.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO2</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Inputs: Logic switches for Sum &amp; Carry</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">05</div>
+            <div class="exp-info">
+              <div class="exp-title">To realize Half Adder and Half Subtractor using logic gates.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO2</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Inputs: Logic switches for Sum &amp; Carry</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-5" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=halfadd.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=halfadd.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-5">
+          <div class="viva-section-title">💡 Core Theory &amp; Logic Expressions</div>
+          <div class="viva-theory-card">
+            A Half Adder computes the arithmetic sum of two 1-bit numbers. A Half Subtractor computes the difference between two 1-bit numbers:
+            <div class="viva-theory-formula">Half Adder: Sum = A ⊕ B , Carry = A · B<br>Half Subtractor: Difference = A ⊕ B , Borrow = A' · B</div>
+            Notice that the Sum and Difference outputs share the identical XOR logic function.
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> How many two-input NAND gates are needed to construct a Half Adder?</div>
+              <div class="viva-a">Exactly 5 NAND gates (4 NAND gates to produce Sum = A ⊕ B, and inverting the output of the first cross-coupled NAND gate gives Carry = A · B).</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> What is the fundamental limitation of a Half Adder in arithmetic ALUs?</div>
+              <div class="viva-a">A Half Adder accepts only two inputs (A and B) and has no provision to receive an incoming carry (C_in) generated from an earlier lower-order bit addition. Multi-bit addition requires Full Adders.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> When is the Borrow output HIGH in a Half Subtractor?</div>
+              <div class="viva-a">Only when A = 0 and B = 1 (computing 0 - 1 = 1 with a borrow of 1, effectively borrowing from the next higher 2^1 radix position).</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Verify that when inputs are A=1, B=1, the Half Adder output is Sum=0 and Carry=1 (binary 10_2 = 2_10).</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 6 -->
       <article class="practical-item" data-id="exp-6" data-co="CO3" data-platform="circuitverse">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">06</div>
-          <div class="exp-info">
-            <div class="exp-title">To verify the operation of multiplexer using IC 74153 (Dual 4:1 MUX).</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO3</span>
-              <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
-              <span class="input-hint">Select lines (S0, S1) + Data lines (I0-I3)</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">06</div>
+            <div class="exp-info">
+              <div class="exp-title">To verify the operation of multiplexer using IC 74153 (Dual 4:1 MUX).</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO3</span>
+                <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
+                <span class="input-hint">Select lines (S0, S1) + Data lines (I0-I3)</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-6" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-cv" href="https://circuitverse.org/users/35502/projects/4x1-multiplexer-550b7eaf-2c9b-4557-abfa-efa2f690aa06" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-cv" href="https://circuitverse.org/users/35502/projects/4x1-multiplexer-550b7eaf-2c9b-4557-abfa-efa2f690aa06" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+        <div class="viva-drawer" id="viva-6">
+          <div class="viva-section-title">💡 Core Theory &amp; Logic Equations</div>
+          <div class="viva-theory-card">
+            IC 74153 is a Dual 4-line to 1-line multiplexer. It contains two separate 4:1 multiplexers sharing address select lines S1 (Pin 2) and S0 (Pin 14), each with an independent active-low enable strobe (1G' on Pin 1, 2G' on Pin 15):
+            <div class="viva-theory-formula">Y = S1'·S0'·I0 + S1'·S0·I1 + S1·S0'·I2 + S1·S0·I3 &nbsp;(when Strobe G' = 0)</div>
+            When Strobe G' = 1, output Y is clamped to logic 0.
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> What is the function of the Strobe (Enable) pin G' in IC 74153?</div>
+              <div class="viva-a">It is an active-low control line. When G' = HIGH (1), the multiplexer is disabled and output Y is forced LOW regardless of inputs. When G' = LOW (0), normal data selection occurs.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> How can a 4:1 multiplexer be used to implement any 3-variable logic function?</div>
+              <div class="viva-a">Assign two variables to select lines S1 and S0. The four data inputs (I0–I3) are connected to 0, 1, the third variable C, or its complement C' according to the truth table without needing external gates.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> How many select lines are needed for an N-to-1 multiplexer?</div>
+              <div class="viva-a">n = log_2(N) select lines. For instance, 4:1 needs 2 select lines, 8:1 needs 3 select lines, and 16:1 needs 4 select lines.</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Don't forget to tie Strobe (Pin 1 or 15) to GND (0 V) during testing, otherwise output remains stuck at 0!</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 7 -->
       <article class="practical-item" data-id="exp-7" data-co="CO3" data-platform="circuitverse">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">07</div>
-          <div class="exp-info">
-            <div class="exp-title">To verify the operation of De-multiplexer using IC 74155 (Dual 1:4 DE-MUX).</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO3</span>
-              <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
-              <span class="input-hint">CircuitVerse: 1x4 De-multiplexer Circuit</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">07</div>
+            <div class="exp-info">
+              <div class="exp-title">To verify the operation of De-multiplexer using IC 74155 (Dual 1:4 DE-MUX).</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO3</span>
+                <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
+                <span class="input-hint">CircuitVerse: 1x4 De-multiplexer Circuit</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-7" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-cv" href="https://circuitverse.org/users/109089/projects/1x4-demultiplexer-12a7bdec-c265-43ed-b9e0-3480a3b687a2" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-cv" href="https://circuitverse.org/users/109089/projects/1x4-demultiplexer-12a7bdec-c265-43ed-b9e0-3480a3b687a2" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+        <div class="viva-drawer" id="viva-7">
+          <div class="viva-section-title">💡 Core Theory &amp; Logic Equations</div>
+          <div class="viva-theory-card">
+            A Demultiplexer takes a single input data line and routes it to one of 2^n output lines based on n select lines. IC 74155 is a Dual 1:4 Demultiplexer / 2:4 Decoder with active-low outputs:
+            <div class="viva-theory-formula">Outputs Y0', Y1', Y2', Y3' are active LOW (0 when selected)</div>
+            Section 1 has an active-low data input (1C), while Section 2 has an active-high data input (2C').
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> What is the relationship between a Demultiplexer and a Decoder?</div>
+              <div class="viva-a">A demultiplexer functions identically to a decoder if its data input line is permanently held at active logic level. The select lines then act as decoder address inputs.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> Why does IC 74155 feature active-low outputs?</div>
+              <div class="viva-a">TTL logic offers greater sink current (I_OL) than source current (I_OH), allowing active-low outputs to drive external logic or indicators with superior noise immunity.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> How can IC 74155 be expanded to act as a 1:8 Demultiplexer or 3-to-8 line decoder?</div>
+              <div class="viva-a">Connect select lines S0 and S1 together, and use the 3rd select line to drive the complementary data inputs 1C and 2C' simultaneously.</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Since outputs are active-LOW, connect indicator LEDs to +5V through 330Ω resistors so they illuminate when active.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 8 -->
       <article class="practical-item" data-id="exp-8" data-co="CO3" data-platform="circuitverse">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">08</div>
-          <div class="exp-info">
-            <div class="exp-title">To verify the operation of 4-bit comparator.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO3</span>
-              <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
-              <span class="input-hint">CircuitVerse: 4-bit Magnitude Comparator</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">08</div>
+            <div class="exp-info">
+              <div class="exp-title">To verify the operation of 4-bit comparator.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO3</span>
+                <span class="platform-pill platform-cv">🌐 CircuitVerse</span>
+                <span class="input-hint">CircuitVerse: 4-bit Magnitude Comparator</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-8" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-cv" href="https://circuitverse.org/users/54346/projects/4-bit-comparator-843ad61f-ad7a-4a91-b79a-97e1c26b8bfd" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-cv" href="https://circuitverse.org/users/54346/projects/4-bit-comparator-843ad61f-ad7a-4a91-b79a-97e1c26b8bfd" target="_blank" rel="noopener noreferrer">CircuitVerse ↗</a>
+        <div class="viva-drawer" id="viva-8">
+          <div class="viva-section-title">💡 Core Theory &amp; Logic Equations</div>
+          <div class="viva-theory-card">
+            A 4-bit magnitude comparator compares two binary words A (A3..A0) and B (B3..B0). It asserts one of three mutually exclusive outputs:
+            <div class="viva-theory-formula">A &gt; B &nbsp;|&nbsp; A = B &nbsp;|&nbsp; A &lt; B</div>
+            Equality occurs when all bit pairs match: (A3 ⊙ B3)(A2 ⊙ B2)(A1 ⊙ B1)(A0 ⊙ B0) = 1 (using XNOR gates).
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> Which bit position takes precedence during magnitude comparison?</div>
+              <div class="viva-a">The Most Significant Bit (MSB, A3 and B3). If A3 ≠ B3, the output is determined immediately, ignoring all lower-order bits (A2..A0).</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> What are cascading inputs in a comparator like IC 7485?</div>
+              <div class="viva-a">Inputs (I_A&gt;B, I_A=B, I_A&lt;B) allow chaining multiple 4-bit comparator ICs in cascade to compare 8-bit, 12-bit, or larger words without extra logic gates.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> For a standalone 4-bit comparison, how must cascading inputs be connected?</div>
+              <div class="viva-a">The I_A=B input must be tied to V_CC (+5V), while I_A&gt;B and I_A&lt;B must be tied to ground (0V).</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Always test corner cases: all 0s vs all 0s (A=B), 1000 vs 0111 (A&gt;B), and 1110 vs 1111 (A&lt;B).</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 9 -->
       <article class="practical-item" data-id="exp-9" data-co="CO4" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">09</div>
-          <div class="exp-info">
-            <div class="exp-title">To study and plot the characteristics of JFET.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO4</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Gate voltage Vgs slider + Drain sweep</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">09</div>
+            <div class="exp-info">
+              <div class="exp-title">To study and plot the characteristics of JFET.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO4</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Gate voltage Vgs slider + Drain sweep</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-9" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=jfetamp.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=jfetamp.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-9">
+          <div class="viva-section-title">💡 Core Theory &amp; Governing Equations</div>
+          <div class="viva-theory-card">
+            A Junction Field-Effect Transistor (JFET) is a voltage-controlled unipolar majority-carrier semiconductor device. Drain current in the saturation/pinch-off region follows Shockley's equation:
+            <div class="viva-theory-formula">I_D = I_DSS × [ 1 - (V_GS / V_P) ]^2 &nbsp;(for V_DS ≥ V_GS - V_P)</div>
+            The reverse-biased gate-source p-n junction results in exceptionally high input resistance (10^8 to 10^9 Ω).
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> Define Pinch-Off Voltage (V_P) and Drain Saturation Current (I_DSS).</div>
+              <div class="viva-a">V_P is the drain-to-source voltage at which channel depletion regions touch and current saturates when V_GS = 0V. I_DSS is the maximum drain current when V_GS = 0V in the saturation region.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> Why is a JFET referred to as a "unipolar" device?</div>
+              <div class="viva-a">Because conduction relies solely on majority carriers (electrons in N-channel JFET, holes in P-channel JFET), unlike BJTs where both electrons and holes participate.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> What is Transconductance (g_m) of a JFET?</div>
+              <div class="viva-a">g_m = ΔI_D / ΔV_GS at constant V_DS. It measures how effectively the gate voltage controls the drain current, typically expressed in mA/V (or µS).</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> Never forward-bias the gate-source junction (keep V_GS ≤ 0V for N-channel JFET), as excessive gate current will destroy the junction.</div>
+          </div>
+        </div>
       </article>
 
       <!-- Exp 10 -->
       <article class="practical-item" data-id="exp-10" data-co="CO4" data-platform="falstad">
-        <div class="practical-left">
-          <div class="practical-check-wrapper">
-            <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
-          </div>
-          <div class="exp-badge">10</div>
-          <div class="exp-info">
-            <div class="exp-title">To study and verify the truth table of JK Flip-Flop.</div>
-            <div class="exp-meta">
-              <span class="co-pill">CO4</span>
-              <span class="platform-pill platform-falstad">⚡ Falstad</span>
-              <span class="input-hint">Interactive J, K logic inputs + Clock pulse trigger</span>
+        <div class="practical-main-row">
+          <div class="practical-left">
+            <div class="practical-check-wrapper">
+              <input type="checkbox" class="exp-checkbox" title="Mark practical as completed" />
+            </div>
+            <div class="exp-badge">10</div>
+            <div class="exp-info">
+              <div class="exp-title">To study and verify the truth table of JK Flip-Flop.</div>
+              <div class="exp-meta">
+                <span class="co-pill">CO4</span>
+                <span class="platform-pill platform-falstad">⚡ Falstad</span>
+                <span class="input-hint">Interactive J, K logic inputs + Clock pulse trigger</span>
+              </div>
             </div>
           </div>
+          <div class="practical-actions">
+            <button class="btn-viva-toggle" data-target="viva-10" title="Toggle Viva &amp; Theory">
+              <span>📖 Viva &amp; Theory</span>
+            </button>
+            <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=jkff.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+          </div>
         </div>
-        <a class="btn-launch btn-falstad" href="https://www.falstad.com/circuit/circuitjs.html?startCircuit=jkff.txt" target="_blank" rel="noopener noreferrer">Simulate ↗</a>
+        <div class="viva-drawer" id="viva-10">
+          <div class="viva-section-title">💡 Core Theory &amp; Characteristic Equation</div>
+          <div class="viva-theory-card">
+            The JK Flip-Flop resolves the undefined/forbidden state (S=R=1) of the SR flip-flop. When J=K=1, the output toggles on each clock pulse:
+            <div class="viva-theory-formula">Q_(n+1) = J·Q'_n + K'·Q_n &nbsp;|&nbsp; J=1, K=1 ⇒ Q_(n+1) = Q'_n (Toggle)</div>
+            States: J=0,K=0 (Hold) | J=0,K=1 (Reset=0) | J=1,K=0 (Set=1) | J=1,K=1 (Toggle).
+          </div>
+          <div class="viva-section-title">❓ Essential Viva-Voce Questions</div>
+          <div class="viva-qa-list">
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q1:</span> What is the "Race-Around Condition" in a JK flip-flop?</div>
+              <div class="viva-a">In a level-triggered JK flip-flop when J=K=1, if clock pulse duration t_p exceeds propagation delay Δt (t_p > Δt), the output toggles repeatedly and unpredictably during the single clock pulse, creating an indeterminate final state.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q2:</span> How is Race-Around eliminated in practice?</div>
+              <div class="viva-a">1) By using Edge-Triggering (narrow clock spike), or 2) By implementing a Master-Slave JK Flip-Flop architecture where Master latches on clock HIGH and Slave transfers to output on clock LOW.</div>
+            </div>
+            <div class="viva-qa-item">
+              <div class="viva-q"><span class="viva-q-badge">Q3:</span> What is the difference between synchronous inputs (J, K) and asynchronous inputs (PRESET, CLEAR)?</div>
+              <div class="viva-a">J and K inputs are sampled synchronously on the active clock edge. PRESET and CLEAR are asynchronous override inputs that set or clear the output immediately, regardless of clock signal.</div>
+            </div>
+          </div>
+          <div class="viva-tip-card">
+            <span>⚠️</span>
+            <div><strong>Lab Pro-Tip:</strong> In IC 7476, PRESET' and CLEAR' are active LOW. Make sure to connect both to +5V (logic 1) during standard clocked testing.</div>
+          </div>
+        </div>
       </article>
 
       <div class="no-results" id="noResultsMsg">
@@ -877,6 +1671,151 @@
         <h4>Dr. S. D. Padiya</h4>
       </div>
     </footer>
+  </div>
+
+  <!-- IC Pinout & Reference Modal -->
+  <div class="modal-overlay" id="pinoutModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">⚡ IC Pinouts &amp; Quick Reference Cheatsheet</h3>
+        <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" data-tab="tab-741">IC 741 (Op-Amp)</button>
+        <button class="modal-tab-btn" data-tab="tab-74153">IC 74153 (Dual 4:1 MUX)</button>
+        <button class="modal-tab-btn" data-tab="tab-74155">IC 74155 (Dual 1:4 DeMUX)</button>
+        <button class="modal-tab-btn" data-tab="tab-gates">74xx Logic Gates</button>
+        <button class="modal-tab-btn" data-tab="tab-safety">Lab Best Practices</button>
+      </div>
+      <div class="modal-body">
+        <!-- Tab 1: IC 741 -->
+        <div class="tab-pane active" id="tab-741">
+          <h4>IC 741 — 8-Pin Dual In-line Package (DIP) Op-Amp</h4>
+          <p style="color:var(--text-muted); margin-bottom: 12px;">Standard general-purpose operational amplifier with internal frequency compensation and short-circuit protection.</p>
+          <table class="pinout-table">
+            <thead>
+              <tr>
+                <th>Pin #</th>
+                <th>Pin Name</th>
+                <th>Description</th>
+                <th>Standard Connection</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="pin-number-badge">1</span></td><td><strong>OFFSET NULL</strong></td><td>Input stage balance adjustment</td><td>10 kΩ potentiometer wiper to Pin 4</td></tr>
+              <tr><td><span class="pin-number-badge">2</span></td><td><strong>INVERTING (-)</strong></td><td>Inverting signal input terminal</td><td>Signal input (inverting) or feedback node</td></tr>
+              <tr><td><span class="pin-number-badge">3</span></td><td><strong>NON-INVERTING (+)</strong></td><td>Non-inverting signal input terminal</td><td>Signal input (non-inverting) or ground reference</td></tr>
+              <tr><td><span class="pin-number-badge">4</span></td><td><strong>-V_EE</strong></td><td>Negative power supply rail</td><td>-12 V to -15 V DC</td></tr>
+              <tr><td><span class="pin-number-badge">5</span></td><td><strong>OFFSET NULL</strong></td><td>Input stage balance adjustment</td><td>Other end of 10 kΩ offset pot</td></tr>
+              <tr><td><span class="pin-number-badge">6</span></td><td><strong>OUTPUT</strong></td><td>Amplifier voltage output</td><td>Oscilloscope / Load resistor</td></tr>
+              <tr><td><span class="pin-number-badge">7</span></td><td><strong>+V_CC</strong></td><td>Positive power supply rail</td><td>+12 V to +15 V DC</td></tr>
+              <tr><td><span class="pin-number-badge">8</span></td><td><strong>NC</strong></td><td>No Internal Connection</td><td>Leave unconnected (floating)</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-top:8px;"><strong>Key Specs:</strong> Supply: ±15V (max ±18V) | Open-Loop Gain: 200,000 | Slew Rate: 0.5 V/µs | Bandwidth: 1 MHz | Input Resistance: 2 MΩ.</p>
+        </div>
+
+        <!-- Tab 2: IC 74153 -->
+        <div class="tab-pane" id="tab-74153">
+          <h4>IC 74153 — 16-Pin Dual 4-Line to 1-Line Multiplexer</h4>
+          <p style="color:var(--text-muted); margin-bottom: 12px;">Contains two independent 4:1 multiplexers sharing common select lines S1 and S0 with separate active-low enable pins.</p>
+          <table class="pinout-table">
+            <thead>
+              <tr>
+                <th>Pin #</th>
+                <th>Symbol</th>
+                <th>Function</th>
+                <th>Pin #</th>
+                <th>Symbol</th>
+                <th>Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="pin-number-badge">1</span></td><td>1G'</td><td>Strobe 1 (Active LOW)</td><td><span class="pin-number-badge">9</span></td><td>2Y</td><td>Output MUX 2</td></tr>
+              <tr><td><span class="pin-number-badge">2</span></td><td>B (S1)</td><td>Select Line 1 (MSB)</td><td><span class="pin-number-badge">10</span></td><td>2C0</td><td>Data Input 0 (MUX 2)</td></tr>
+              <tr><td><span class="pin-number-badge">3</span></td><td>1C3</td><td>Data Input 3 (MUX 1)</td><td><span class="pin-number-badge">11</span></td><td>2C1</td><td>Data Input 1 (MUX 2)</td></tr>
+              <tr><td><span class="pin-number-badge">4</span></td><td>1C2</td><td>Data Input 2 (MUX 1)</td><td><span class="pin-number-badge">12</span></td><td>2C2</td><td>Data Input 2 (MUX 2)</td></tr>
+              <tr><td><span class="pin-number-badge">5</span></td><td>1C1</td><td>Data Input 1 (MUX 1)</td><td><span class="pin-number-badge">13</span></td><td>2C3</td><td>Data Input 3 (MUX 2)</td></tr>
+              <tr><td><span class="pin-number-badge">6</span></td><td>1C0</td><td>Data Input 0 (MUX 1)</td><td><span class="pin-number-badge">14</span></td><td>A (S0)</td><td>Select Line 0 (LSB)</td></tr>
+              <tr><td><span class="pin-number-badge">7</span></td><td>1Y</td><td>Output MUX 1</td><td><span class="pin-number-badge">15</span></td><td>2G'</td><td>Strobe 2 (Active LOW)</td></tr>
+              <tr><td><span class="pin-number-badge">8</span></td><td>GND</td><td>Ground Reference (0 V)</td><td><span class="pin-number-badge">16</span></td><td>V_CC</td><td>Supply Voltage (+5.0 V)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 3: IC 74155 -->
+        <div class="tab-pane" id="tab-74155">
+          <h4>IC 74155 — 16-Pin Dual 1:4 Demultiplexer / 2:4 Decoder</h4>
+          <p style="color:var(--text-muted); margin-bottom: 12px;">Dual 2-to-4 decoder / 1:4 demultiplexer with active-low inverting outputs.</p>
+          <table class="pinout-table">
+            <thead>
+              <tr>
+                <th>Pin #</th>
+                <th>Symbol</th>
+                <th>Function</th>
+                <th>Pin #</th>
+                <th>Symbol</th>
+                <th>Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="pin-number-badge">1</span></td><td>1C</td><td>Data Input 1</td><td><span class="pin-number-badge">9</span></td><td>2Y0'</td><td>Output 0 (Demux 2)</td></tr>
+              <tr><td><span class="pin-number-badge">2</span></td><td>1G'</td><td>Enable 1 (Active LOW)</td><td><span class="pin-number-badge">10</span></td><td>2Y1'</td><td>Output 1 (Demux 2)</td></tr>
+              <tr><td><span class="pin-number-badge">3</span></td><td>B (S1)</td><td>Select Line 1</td><td><span class="pin-number-badge">11</span></td><td>2Y2'</td><td>Output 2 (Demux 2)</td></tr>
+              <tr><td><span class="pin-number-badge">4</span></td><td>1Y3'</td><td>Output 3 (Demux 1)</td><td><span class="pin-number-badge">12</span></td><td>2Y3'</td><td>Output 3 (Demux 2)</td></tr>
+              <tr><td><span class="pin-number-badge">5</span></td><td>1Y2'</td><td>Output 2 (Demux 1)</td><td><span class="pin-number-badge">13</span></td><td>A (S0)</td><td>Select Line 0</td></tr>
+              <tr><td><span class="pin-number-badge">6</span></td><td>1Y1'</td><td>Output 1 (Demux 1)</td><td><span class="pin-number-badge">14</span></td><td>2G'</td><td>Enable 2 (Active LOW)</td></tr>
+              <tr><td><span class="pin-number-badge">7</span></td><td>1Y0'</td><td>Output 0 (Demux 1)</td><td><span class="pin-number-badge">15</span></td><td>2C'</td><td>Data Input 2 (Inverted)</td></tr>
+              <tr><td><span class="pin-number-badge">8</span></td><td>GND</td><td>Ground (0 V)</td><td><span class="pin-number-badge">16</span></td><td>V_CC</td><td>Supply (+5.0 V)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 4: 74xx Logic Gates -->
+        <div class="tab-pane" id="tab-gates">
+          <h4>Standard 14-Pin TTL Digital Logic Gates</h4>
+          <p style="color:var(--text-muted); margin-bottom: 12px;">All standard 14-pin DIP logic ICs share Pin 7 = GND (0 V) and Pin 14 = V_CC (+5.0 V).</p>
+          <table class="pinout-table">
+            <thead>
+              <tr>
+                <th>IC Number</th>
+                <th>Logic Function</th>
+                <th>Gate Configuration</th>
+                <th>Pinout Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>7404</strong></td><td>Hex Inverter (NOT)</td><td>6 independent inverters</td><td>Inputs: 1, 3, 5, 9, 11, 13 | Outputs: 2, 4, 6, 8, 10, 12</td></tr>
+              <tr><td><strong>7408</strong></td><td>Quad 2-Input AND</td><td>4 independent AND gates</td><td>Gate 1: In(1,2) Out(3) | Gate 2: In(4,5) Out(6) | Gate 3: In(9,10) Out(8) | Gate 4: In(12,13) Out(11)</td></tr>
+              <tr><td><strong>7432</strong></td><td>Quad 2-Input OR</td><td>4 independent OR gates</td><td>Same pin arrangement as 7408</td></tr>
+              <tr><td><strong>7400</strong></td><td>Quad 2-Input NAND</td><td>4 independent NAND gates</td><td>Same pin arrangement as 7408</td></tr>
+              <tr><td><strong>7402</strong></td><td>Quad 2-Input NOR</td><td>4 independent NOR gates</td><td>Gate 1: Out(1) In(2,3) | Gate 2: Out(4) In(5,6) | Gate 3: Out(10) In(8,9) | Gate 4: Out(13) In(11,12)</td></tr>
+              <tr><td><strong>7486</strong></td><td>Quad 2-Input XOR</td><td>4 independent XOR gates</td><td>Same pin arrangement as 7408</td></tr>
+              <tr><td><strong>7485</strong></td><td>4-Bit Magnitude Comp.</td><td>Compares two 4-bit words</td><td>16-Pin DIP (V_CC=Pin 16, GND=Pin 8)</td></tr>
+              <tr><td><strong>7476</strong></td><td>Dual JK Flip-Flop</td><td>With Preset and Clear</td><td>16-Pin DIP (V_CC=Pin 5, GND=Pin 13)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 5: Lab Safety & Best Practices -->
+        <div class="tab-pane" id="tab-safety">
+          <h4>SSGMCE IT Lab Guidelines &amp; Breadboard Best Practices</h4>
+          <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.7;">
+            <li><strong>Always power down before wiring:</strong> Never insert or remove ICs from breadboards or trainers while DC power supply is ON.</li>
+            <li><strong>Verify polarity:</strong> Double-check +5V and Ground leads before switching ON the bench power supply. A reversed supply damages TTL ICs instantly.</li>
+            <li><strong>Decoupling capacitors:</strong> In hardware circuits, place a 0.1 µF ceramic capacitor across V_CC and GND near the IC to suppress high-frequency supply spikes.</li>
+            <li><strong>Use standard wire colors:</strong> Red for +5V / +12V, Black for GND, Blue for -12V, Yellow/Green for signal inputs, White/Orange for outputs.</li>
+            <li><strong>Measure carefully with CRO/DSO:</strong> Ensure the oscilloscope ground crocodile clip is connected to circuit ground only—never to an active node or signal terminal.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotification">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Action completed successfully!</span>
   </div>
 
   <script>
@@ -909,7 +1848,7 @@
         localStorage.setItem('ade-theme', isDark ? 'dark' : 'light');
       });
 
-      // 2. Progress Tracker
+      // 2. Progress Tracker & Storage
       const checkboxes = document.querySelectorAll('.exp-checkbox');
       const trackerStatsText = document.getElementById('trackerStatsText');
       const progressBarFill = document.getElementById('progressBarFill');
@@ -944,7 +1883,7 @@
         });
 
         const total = checkboxes.length;
-        const percent = Math.round((count / total) * 100);
+        const percent = total > 0 ? Math.round((count / total) * 100) : 0;
         trackerStatsText.textContent = `${count} of ${total} Completed (${percent}%)`;
         progressBarFill.style.width = `${percent}%`;
       }
@@ -967,6 +1906,84 @@
       });
 
       updateProgress();
+
+      // Toast Notification Helper
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+      let toastTimer = null;
+
+      function showToast(message, icon = '✅') {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMsg.textContent = message;
+        toastIcon.textContent = icon;
+        toast.classList.add('show');
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3200);
+      }
+
+      // Progress Export / Import / Reset
+      const exportBtn = document.getElementById('exportProgressBtn');
+      const importInput = document.getElementById('importProgressInput');
+      const resetBtn = document.getElementById('resetProgressBtn');
+
+      exportBtn.addEventListener('click', function () {
+        const completed = loadCompleted();
+        const exportData = {
+          app: 'SSGMCE ADE Lab Tracker',
+          version: '1.2.0',
+          exportedAt: new Date().toISOString(),
+          completedExperiments: completed,
+          completionPercent: Math.round((completed.length / checkboxes.length) * 100)
+        };
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const dateStr = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `ade-lab-progress-${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Progress exported to JSON!', '💾');
+      });
+
+      importInput.addEventListener('change', function (e) {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (Array.isArray(data.completedExperiments)) {
+              saveCompleted(data.completedExperiments);
+              updateProgress();
+              showToast(`Imported ${data.completedExperiments.length} completed practicals!`, '📥');
+            } else if (Array.isArray(data)) {
+              saveCompleted(data);
+              updateProgress();
+              showToast(`Imported ${data.length} completed practicals!`, '📥');
+            } else {
+              alert('Invalid progress file format.');
+            }
+          } catch (err) {
+            alert('Failed to parse JSON file.');
+          }
+          importInput.value = '';
+        };
+        reader.readAsText(file);
+      });
+
+      resetBtn.addEventListener('click', function () {
+        if (confirm('Are you sure you want to reset all completed practical marks?')) {
+          saveCompleted([]);
+          updateProgress();
+          showToast('Progress reset successfully.', '🔄');
+        }
+      });
 
       // 3. Search and Filtering
       const searchInput = document.getElementById('searchInput');
@@ -1012,7 +2029,6 @@
           const filterType = this.getAttribute('data-type');
           const filterValue = this.getAttribute('data-filter');
 
-          // Update active pill in this group
           document.querySelectorAll(`.filter-pill[data-type="${filterType}"]`).forEach((p) => {
             p.classList.remove('active');
           });
@@ -1026,6 +2042,73 @@
 
           applyFilters();
         });
+      });
+
+      // 4. Viva Voce Accordion Toggles
+      const vivaButtons = document.querySelectorAll('.btn-viva-toggle');
+      vivaButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          const drawer = document.getElementById(targetId);
+          if (!drawer) return;
+
+          const isOpen = drawer.classList.contains('open');
+          if (isOpen) {
+            drawer.classList.remove('open');
+            this.classList.remove('active');
+          } else {
+            drawer.classList.add('open');
+            this.classList.add('active');
+          }
+        });
+      });
+
+      // 5. IC Pinouts Modal Logic
+      const pinoutModal = document.getElementById('pinoutModal');
+      const openPinoutsBtn = document.getElementById('openPinoutsBtn');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const modalTabs = document.querySelectorAll('.modal-tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      function openModal() {
+        pinoutModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        pinoutModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      openPinoutsBtn.addEventListener('click', openModal);
+      closeModalBtn.addEventListener('click', closeModal);
+
+      pinoutModal.addEventListener('click', function (e) {
+        if (e.target === pinoutModal) closeModal();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && pinoutModal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+
+      modalTabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          modalTabs.forEach((t) => t.classList.remove('active'));
+          tabPanes.forEach((p) => p.classList.remove('active'));
+
+          this.classList.add('active');
+          const targetTab = this.getAttribute('data-tab');
+          const pane = document.getElementById(targetTab);
+          if (pane) pane.classList.add('active');
+        });
+      });
+
+      // 6. Print Trigger
+      const printSheetBtn = document.getElementById('printSheetBtn');
+      printSheetBtn.addEventListener('click', function () {
+        window.print();
       });
     })();
   </script>
